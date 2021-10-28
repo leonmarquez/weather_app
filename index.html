@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Weather Map</title>
+</head>
+<body>
+
+    <video autoplay loop class="bg__video bg__show" src="https://player.vimeo.com/external/451758277.hd.mp4?s=80c714688123300922fcc99042736449864a6cb0&profile_id=172&oauth2_token_id=57447761&download=1&w=1920&h=1080"></video>
+    <video autoplay loop class="bg__video bg__hidden" src="https://player.vimeo.com/external/297888387.hd.mp4?s=597e7209648625e257b30e9d73164b2239de2425&profile_id=175&oauth2_token_id=57447761&download=1&w=1920&h=1080"></video>
+
+    <nav class="nav">
+
+        <h1 id="weather__city" >Laiy Weater App</h1>
+
+        <form action="" class="input" onsubmit="getCityInput(); return false">
+            <input class="input__field"  type="text" placeholder="city name...">
+            <button class="input__button" type="submit" >search</button>
+        </form>
+    
+    </nav>
+  
+
+
+    <div id="weather__app" class="grid">      
+
+    </div>
+
+
+
+    <script src="js/weather.js"></script>
+    
+</body>
+</html>
