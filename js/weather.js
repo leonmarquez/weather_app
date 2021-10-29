@@ -31,7 +31,8 @@ function getDateTime(unix_timestamp){
 async function getCurrentWeather(city, units){
     const weatherApiKey = await getWeatherApiKey();
     //console.log('API KEY: ' + weatherApiKey)
-    let url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + weatherApiKey + '&units=' + units;
+    let protocol = location.protocol;
+    let url = protocol + '//api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + weatherApiKey + '&units=' + units;
     console.log(`Connecting to ${url}`)
     fetch(url)
         .then(res => {
@@ -118,7 +119,7 @@ function currentWeatherCard(data, unit) {
 function forecastHourlyCard(data, unit) {
     var html_list =  "";
     //console.log(data.list[1].main.temp)
-    for(var i=0; i < 6; i++){
+    for(var i=0; i < 4; i++){
         var dataItem = data.list[i]
 
         var houre = getDateTime(dataItem.dt).getHours().toString();
@@ -158,11 +159,11 @@ function getCurrentWeatherIcon(currentWeather){
     if(!currentWeather){
         throw Error;
     } else if(currentWeather == "Clouds") {
-        imgSrc = "https://player.vimeo.com/external/297888387.hd.mp4?s=597e7209648625e257b30e9d73164b2239de2425&profile_id=175&oauth2_token_id=57447761&download=1&w=1920&h=1080"
+        imgSrc = "./assets/images/cloudy.png"
     } else if(currentWeather == "Rain"){
-        imgSrc = "https://player.vimeo.com/external/451758277.hd.mp4?s=80c714688123300922fcc99042736449864a6cb0&profile_id=172&oauth2_token_id=57447761&download=1&w=1920&h=1080"
+        imgSrc = "./assets/images/rain.png"
     } else if(currentWeather == "Clear"){
-        imgSrc = "https://player.vimeo.com/external/474256084.hd.mp4?s=6fa7fa7bd2ea188ec35a6bc9d685e5f9b23f8341&profile_id=175&oauth2_token_id=57447761&download=1&w=1920&h=1080"
+        imgSrc = "./assets/images/sunny.png"
     } 
 
     return imgSrc; 
@@ -174,11 +175,11 @@ function setBgVideo(currentWeather){
     if (!currentWeather){
         throw Error;
     } else if(currentWeather == "Clouds"){
-        videoSrc = "./assets/videos/cloudy.mp4";
+        videoSrc = "https://player.vimeo.com/external/297888387.hd.mp4?s=597e7209648625e257b30e9d73164b2239de2425&profile_id=175&oauth2_token_id=57447761&download=1&w=1920&h=1080";
     }else if(currentWeather == "Rain"){
-        videoSrc = "./assets/videos/weather.mp4";
+        videoSrc = "https://player.vimeo.com/external/451758277.hd.mp4?s=80c714688123300922fcc99042736449864a6cb0&profile_id=172&oauth2_token_id=57447761&download=1&w=1920&h=1080";
     } else if(currentWeather == "Clear"){
-        videoSrc = "./assets/videos/sunny.mp4"
+        videoSrc = "https://player.vimeo.com/external/474256084.hd.mp4?s=6fa7fa7bd2ea188ec35a6bc9d685e5f9b23f8341&profile_id=175&oauth2_token_id=57447761&download=1&w=1920&h=1080"
     } else {
         console.log("NO VIDEO FOUND FOR: " + currentWeather);
     }
